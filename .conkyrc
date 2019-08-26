@@ -4,15 +4,9 @@
 -- GitHub : https://github.com/philosophos/conky.conf
 
 conky.config = {
-	color0 = '#282a2e',
-	color1 = '#a85377',
-	color2 = '#746f81',
-	color3 = '#545670',
-	color4 = '#6a9bb9',
-	color5 = '#764970',
-	color6 = '#abb9ba',
-	color7 = '#899298',
-	color8 = '#373b41',
+	color0 = '#bf616a',
+	color1 = '#fdf6e3',
+	color2 = '#bfbaac',
     alignment = 'top_right',
     background = true,
     border_width = 0,
@@ -79,61 +73,59 @@ conky.config = {
 }
 
 conky.text = [[
-${color6}Uptime: $uptime $hr
-${color7}CPU: $cpu% ${alignr 40}${color7}RAM: $memperc% = $mem / $memmax
-${color7}CPU Freq: ${freq}MHz
-${color7}CPU Temp: ${hwmon 0 temp 1}°C
-${color7}GPU Temp: ${execi 2 nvidia-settings -query GPUCoreTemp | grep Attribute | head -n1 | cut -c46-47}°C
-${color7}${cpugraph 60,250 00ff00 ff0000} \
-${color7}${memgraph 60,250 00ff00 ff0000}
-${color6}CPU cores info: $hr
-${color7}CPU 1${alignc}${freq_g 1}GHz ${alignr}${color6}${cpu cpu1}% ${cpubar cpu1 12,150}
-${color7}CPU 2${alignc}${freq_g 2}GHz ${alignr}${color6}${cpu cpu2}% ${cpubar cpu1 12,150}
-${color7}CPU 3${alignc}${freq_g 3}GHz ${alignr}${color6}${cpu cpu3}% ${cpubar cpu1 12,150}
-${color7}CPU 4${alignc}${freq_g 4}GHz ${alignr}${color6}${cpu cpu4}% ${cpubar cpu1 12,150}
-${color7}CPU 5${alignc}${freq_g 5}GHz ${alignr}${color6}${cpu cpu5}% ${cpubar cpu1 12,150}
-${color7}CPU 6${alignc}${freq_g 6}GHz ${alignr}${color6}${cpu cpu6}% ${cpubar cpu1 12,150}
-${color7}CPU 7${alignc}${freq_g 7}GHz ${alignr}${color6}${cpu cpu7}% ${cpubar cpu1 12,150}
-${color7}CPU 8${alignc}${freq_g 8}GHz ${alignr}${color6}${cpu cpu8}% ${cpubar cpu1 12,150}
-${color6}Networking: $hr
-${color7}Net Down: ${color7}${downspeed enp30s0}${alignc -50}${color7}Net Up: ${color7}${upspeed enp30s0}
-${color7}${downspeedgraph enp30s0 60,240 07CC0D FF0000 -t} ${color7}${upspeedgraph enp30s0 60,250 07CC0D FF0000 -t}
-${color6}DiskIO: $diskio $hr
-${color7}Read: ${diskio_read sda}${alignc -40}Write: ${diskio_write sda}
-${color7}${diskiograph_read 30,250 00ff00 ffff00} ${color7}${diskiograph_write 30,250 00ff00 ffff00}
-${color6}File systems: $hr
-${color7}Swap Usage: $swapperc% = $swap/$swapmax ${color7} ${swapbar 4 00ff00 ff0000}
-${color7}/     ${alignr 300}\
- ${color6}${fs_used /} /\
- ${color6}${fs_size /} \
- ${color6}${fs_bar 6 /}
-${color7}/home ${alignr 300}\
- ${color6}${fs_used /home} /\
- ${color6}${fs_size /home} \
- ${color6}${fs_bar 6 /home}
-$color6}$hr
-${color7}Processes:${color6} $processes  \
-${color7}Running:${color6} $running_processes \
-	${color7}${sysname} ${kernel}
+${color0}Uptime: $uptime $hr
+${color1}CPU: $cpu% ${alignr 40}${color1}RAM: $memperc% = $mem / $memmax
+${color1}CPU Freq: ${freq}MHz
+${color1}CPU Temp: ${hwmon 0 temp 1}°C
+${color1}${cpugraph 60,250 00ff00 ff0000} \
+${color1}${memgraph 60,250 00ff00 ff0000}
+${color0}CPU cores info: $hr
+${color1}CPU 1${alignc}${freq_g 1}GHz ${alignr}${color1}${cpu cpu1}% ${cpubar cpu1 12,150}
+${color1}CPU 2${alignc}${freq_g 2}GHz ${alignr}${color1}${cpu cpu2}% ${cpubar cpu1 12,150}
+${color1}CPU 3${alignc}${freq_g 3}GHz ${alignr}${color1}${cpu cpu3}% ${cpubar cpu1 12,150}
+${color1}CPU 4${alignc}${freq_g 4}GHz ${alignr}${color1}${cpu cpu4}% ${cpubar cpu1 12,150}
+${color1}CPU 5${alignc}${freq_g 5}GHz ${alignr}${color1}${cpu cpu5}% ${cpubar cpu1 12,150}
+${color1}CPU 6${alignc}${freq_g 6}GHz ${alignr}${color1}${cpu cpu6}% ${cpubar cpu1 12,150}
+${color1}CPU 7${alignc}${freq_g 7}GHz ${alignr}${color1}${cpu cpu7}% ${cpubar cpu1 12,150}
+${color1}CPU 8${alignc}${freq_g 8}GHz ${alignr}${color1}${cpu cpu8}% ${cpubar cpu1 12,150}
+${color0}Networking: $hr
+${color1}Net Down: ${color1}${downspeed enp30s0}${alignc -50}${color1}Net Up: ${color1}${upspeed enp30s0}
+${color1}${downspeedgraph enp30s0 60,240 07CC0D FF0000 -t} ${color1}${upspeedgraph enp30s0 60,250 07CC0D FF0000 -t}
+${color0}DiskIO: $diskio $hr
+${color1}Read: ${diskio_read sda}${alignc -40}Write: ${diskio_write sda}
+${color1}${diskiograph_read 30,250 00ff00 ffff00} ${color1}${diskiograph_write 30,250 00ff00 ffff00}
+${color0}File systems: $hr
+${color1}/     ${alignr 300}\
+ ${color1}${fs_used /} /\
+ ${color1}${fs_size /} \
+ ${color1}${fs_bar 6 /}
+${color1}/home ${alignr 300}\
+ ${color1}${fs_used /home} /\
+ ${color1}${fs_size /home} \
+ ${color1}${fs_bar 6 /home}
+$color0}$hr
+${color1}Processes:${color1} $processes  \
+${color1}Running:${color1} $running_processes \
+	${color1}${sysname} ${kernel}
 \
-${color7}Highest CPU         PID   CPU% | \
-${color7}Highest MEM         PID   MEM%
-${color6} ${top     name 1} ${top     pid 1} ${top     cpu 1} | \
-${color6} ${top_mem name 1} ${top_mem pid 1} ${top_mem mem 1}
-${color6} ${top     name 2} ${top     pid 2} ${top     cpu 2} | \
-${color6} ${top_mem name 2} ${top_mem pid 2} ${top_mem mem 2}
-${color6} ${top     name 3} ${top     pid 3} ${top     cpu 3} | \
-${color6} ${top_mem name 3} ${top_mem pid 3} ${top_mem mem 3}
-${color6} ${top     name 4} ${top     pid 4} ${top     cpu 4} | \
-${color6} ${top_mem name 4} ${top_mem pid 4} ${top_mem mem 4}
-${color6} ${top     name 5} ${top     pid 5} ${top     cpu 5} | \
-${color6} ${top_mem name 5} ${top_mem pid 5} ${top_mem mem 5}
-${color6} ${top     name 6} ${top     pid 6} ${top     cpu 6} | \
-${color6} ${top_mem name 6} ${top_mem pid 6} ${top_mem mem 6}
-${color6} ${top     name 7} ${top     pid 7} ${top     cpu 7} | \
-${color6} ${top_mem name 7} ${top_mem pid 7} ${top_mem mem 7}
-${color6} ${top     name 8} ${top     pid 8} ${top     cpu 8} | \
-${color6} ${top_mem name 8} ${top_mem pid 8} ${top_mem mem 8}
-${color6} ${top     name 9} ${top     pid 9} ${top     cpu 9} | \
-${color6} ${top_mem name 9} ${top_mem pid 9} ${top_mem mem 9}
+${color1}Highest CPU         PID   CPU% | \
+${color1}Highest MEM         PID   MEM%
+${color2} ${top     name 1} ${top     pid 1} ${top     cpu 1} | \
+${color2} ${top_mem name 1} ${top_mem pid 1} ${top_mem mem 1}
+${color2} ${top     name 2} ${top     pid 2} ${top     cpu 2} | \
+${color2} ${top_mem name 2} ${top_mem pid 2} ${top_mem mem 2}
+${color2} ${top     name 3} ${top     pid 3} ${top     cpu 3} | \
+${color2} ${top_mem name 3} ${top_mem pid 3} ${top_mem mem 3}
+${color2} ${top     name 4} ${top     pid 4} ${top     cpu 4} | \
+${color2} ${top_mem name 4} ${top_mem pid 4} ${top_mem mem 4}
+${color2} ${top     name 5} ${top     pid 5} ${top     cpu 5} | \
+${color2} ${top_mem name 5} ${top_mem pid 5} ${top_mem mem 5}
+${color2} ${top     name 6} ${top     pid 6} ${top     cpu 6} | \
+${color2} ${top_mem name 6} ${top_mem pid 6} ${top_mem mem 6}
+${color2} ${top     name 7} ${top     pid 7} ${top     cpu 7} | \
+${color2} ${top_mem name 7} ${top_mem pid 7} ${top_mem mem 7}
+${color2} ${top     name 8} ${top     pid 8} ${top     cpu 8} | \
+${color2} ${top_mem name 8} ${top_mem pid 8} ${top_mem mem 8}
+${color2} ${top     name 9} ${top     pid 9} ${top     cpu 9} | \
+${color2} ${top_mem name 9} ${top_mem pid 9} ${top_mem mem 9}
 ]]

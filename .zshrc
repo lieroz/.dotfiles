@@ -1,14 +1,19 @@
+export GOPATH=$HOME/GoSdk/gocode
+export GOROOT=$HOME/GoSdk/go
+
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/lieroz/.oh-my-zsh"
+export ZSH="/home/lieroz/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="maran"
+ZSH_THEME="gianu"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,6 +105,11 @@ source $ZSH/oh-my-zsh.sh
 bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
 
-neofetch
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
+tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+
+alias gg='git grep -n --color'
+
+neofetch

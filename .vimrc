@@ -1,81 +1,92 @@
-" General
-"------------------------------------------------------------------------------
-set number	                " Show line numbers
-set cursorline                  " Highlight current line
-set linebreak	                " Break lines at word (requires Wrap lines)
-set showbreak=+++               " Wrap-broken line prefix
-set textwidth=100               " Line wrap (number of cols)
-set showmatch	                " Highlight matching brace
-set visualbell	                " Use visual bell (no beeping)
-
-set hlsearch	                " Highlight all search results
-set smartcase	                " Enable smart-case search
-set ignorecase	                " Always case-insensitive
-set incsearch	                " Searches for strings incrementally
-
-set autoindent	                " Auto-indent new lines
-set cindent	                " Use 'C' style program indenting
-set expandtab	                " Use spaces instead of tabs
-set shiftwidth=4                " Number of auto-indent spaces
-set smartindent	                " Enable smart-indent
-set smarttab	                " Enable smart-tabs
-set softtabstop=4               " Number of spaces per Tab
-
-set splitbelow
-set splitright
-
-" Themes and colors
-"------------------------------------------------------------------------------
 syntax on
-colorscheme Civic
+colorscheme atom-dark-256
+
+" search
+set incsearch
+set ignorecase
+set smartcase
+
+" editor settings
+set mouse=a
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set nu
+set rnu
+set tags+=./tags
+set hidden
+set nocompatible
+set cursorline
+set cursorcolumn
 set t_Co=256
+set directory=~/.vim/tmp
 
-" Advanced
-"------------------------------------------------------------------------------
-set ruler                       " Show row and column ruler information
+call pathogen#infect()
+call pathogen#helptags()
 
-set autochdir                   " Change working directory to open buffer
-set autowriteall                " Auto-write all file changes
+" encoding menu (koi8-r, cp1251, cp866, utf8)
+set wildmenu
+set wcm=<Tab>
+menu Encoding.koi8-r :e ++enc=8bit-koi8-r<CR>
+menu Encoding.windows-1251 :e ++enc=8bit-cp1251<CR>
+menu Encoding.ibm-866 :e ++enc=8bit-ibm866<CR>
+menu Encoding.utf-8 :e ++enc=2byte-utf-8 <CR>
+menu Encoding.ucs-2le :e ++enc=ucs-2le<CR>
 
-set undolevels=1000             " Number of undo levels
-set backspace=indent,eol,start	" Backspace behaviour
+" display encoding menu
+nmap <F7> :emenu Encoding.<TAB>
+vmap <F7> <esc>:emenu Encoding.<TAB>
+imap <F7> <esc>:emenu Encoding.<TAB>
 
-" Key bindings
-"------------------------------------------------------------------------------
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" string end format
+set wildmenu
+set wcm=<Tab>
+menu Encoding.End_line_format.unix<Tab><C-F7> :set fileformat=unix<CR>
+menu Encoding.End_line_format.dos<Tab><C-F7> :set fileformat=dos<CR>
+menu Encoding.End_line_format.mac<Tab><C-F7> :set fileformat=mac<CR>
+nmap <F8> :emenu Encoding.End_line_format.<TAB>
 
-execute pathogen#infect()
+map <F12> :!ctags -f tags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q -I  _GLIBCXX_NOEXCEPT .<CR>
+map <F9> :wa<CR>:make!<CR>
+imap <F9> <Esc>:wa<CR>:make!<CR>
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "*",
-    \ "Staged"    : "+",
-    \ "Untracked" : "!",
-    \ "Renamed"   : "->",
-    \ "Unmerged"  : "=",
-    \ "Deleted"   : "<",
-    \ "Dirty"     : "!!",
-    \ "Clean"     : "^",
-    \ 'Ignored'   : '_',
-    \ "Unknown"   : "?"
-    \ }
+set exrc
+set secure
 
-let g:NERDTreeDirArrowExpandable = '>'
-let g:NERDTreeDirArrowCollapsible = '|'
+map <Leader>l :E<CR>
+map <Leader>f :NERDTreeFind<CR>
+map <F5> :call CurtineIncSw()<CR> 
 
-let g:acp_behaviorKeywordLength = 3
-let g:clang_library_path = '/usr/lib/libclang.so'
-let g:clang_complete_auto = 1
 
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-let g:cpp_concepts_highlight = 1
+nnoremap <C-l> :NERDTree<CR>
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
-" Call the .vimrc.plug file
-if filereadable(expand("~/.vimrc.plug"))
-    source ~/.vimrc.plug
-endif
+autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+"map <ESC>[1;5D <C-Left>
+"map <ESC>[1;5C <C-Right>
+"map! <ESC>[1;5D <C-left>
+"map! <ESC>[1;5C <C-Right>
+map <ESC>f <C-Right>
+map! <ESC>f <C-Right>
+
+command W w !sudo tee % > /dev/null
+au BufNewFile,BufRead *.yaml,*.yml,*.yaml.erb so ~/.vim/yaml.vim
+
+"navigation
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : exists("g:loaded_snips") ? "\<C-r>=TriggerSnippet()\<CR>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : exists("g:loaded_snips") ? "\<C-r>=BackwardsSnippet()\<CR>" : "\<S-Tab>"
+
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+
+let g:airline_theme = 'wombat'
+let g:airline_symbols_ascii = 1
