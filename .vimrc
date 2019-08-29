@@ -21,6 +21,7 @@ set cursorline
 set cursorcolumn
 set t_Co=256
 set directory=~/.vim/tmp
+set nowrap
 
 call pathogen#infect()
 call pathogen#helptags()
