@@ -67,7 +67,7 @@ URxvt.keysym.Control-Left: \033[1;5D
 URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
-URxvt.keysym.Shift-Control-X: clear && neofetch\n
+URxvt.keysym.Shift-Control-X: command:\033c
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
 URxvt.urlLauncher: chromuim
