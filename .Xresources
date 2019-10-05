@@ -38,11 +38,12 @@
 *.color15: #fdf6e3
 
 ! URxvt Appearance
-URxvt.font: xft:UbuntuMono:pixelsize=16:minspace=False
-URxvt.boldFont: xft:UbuntuMono:pixelsize=16:minspace=False
-URxvt.italicFont: xft:UbuntuMono:pixelsize=16:minspace=False
-URxvt.boldItalicfont: xft:UbuntuMono:pixelsize=16:minspace=False
-URxvt.letterSpace: 0
+URxvt*font: xft:Ubuntu Mono derivative Powerline:size=16:antialias=true:hinting=true
+URxvt*boldFont: xft:Ubuntu Mono derivative Powerline:size=16:antialias=true:hinting=true
+URxvt*italicFont: xft:Ununtu Mono derivative Powerline:size=16:antialias=true:hinting=true
+URxvt*boldItalicFont: xft:Ununtu Mono derivative Powerline:size=16:antialias=true:hinting=true
+
+URxvt*letterSpace: -1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
 URxvt.internalBorder: 12
@@ -54,6 +55,7 @@ URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
 URxvt.depth: 24
 URxvt.iso14755: false
+URxvt*termName: xterm-256color
 
 !! Common Keybinds for Navigations
 URxvt.keysym.Shift-Up: command:\033]720;1\007
