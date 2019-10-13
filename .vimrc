@@ -1,5 +1,26 @@
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-airline/vim-airline'
+Plugin 'majutsushi/tagbar'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'valloric/youcompleteme'
+Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'rust-lang/rust.vim'
+
+call vundle#end()
+
 syntax on
-colorscheme atom-dark-256
+colorscheme dracula
 
 " search
 set incsearch
@@ -23,8 +44,42 @@ set t_Co=256
 set directory=~/.vim/tmp
 set nowrap
 
-call pathogen#infect()
-call pathogen#helptags()
+filetype plugin indent on
+
+" navigation
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+
+" Highlight matching words
+autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+" Ctrl + n to toggle nerdtree && Ctrl + m to toggle tagbar
+map <C-n> :NERDTreeToggle<CR>
+nmap <C-m> :TagbarToggle<CR>
+
+" Rust settings
+let g:rustfmt_autosave = 1
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+
+" Display error message if smth is wrong
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Searching using CtrlP plugin
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" map jj to Esc
+imap jj <Esc>
 
 " encoding menu (koi8-r, cp1251, cp866, utf8)
 set wildmenu
@@ -47,47 +102,3 @@ menu Encoding.End_line_format.unix<Tab><C-F7> :set fileformat=unix<CR>
 menu Encoding.End_line_format.dos<Tab><C-F7> :set fileformat=dos<CR>
 menu Encoding.End_line_format.mac<Tab><C-F7> :set fileformat=mac<CR>
 nmap <F8> :emenu Encoding.End_line_format.<TAB>
-
-map <F12> :!ctags -f tags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q -I  _GLIBCXX_NOEXCEPT .<CR>
-map <F9> :wa<CR>:make!<CR>
-imap <F9> <Esc>:wa<CR>:make!<CR>
-
-set exrc
-set secure
-
-map <Leader>l :E<CR>
-map <Leader>f :NERDTreeFind<CR>
-map <F5> :call CurtineIncSw()<CR> 
-
-
-nnoremap <C-l> :NERDTree<CR>
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-
-"map <ESC>[1;5D <C-Left>
-"map <ESC>[1;5C <C-Right>
-"map! <ESC>[1;5D <C-left>
-"map! <ESC>[1;5C <C-Right>
-map <ESC>f <C-Right>
-map! <ESC>f <C-Right>
-
-command W w !sudo tee % > /dev/null
-au BufNewFile,BufRead *.yaml,*.yml,*.yaml.erb so ~/.vim/yaml.vim
-
-"navigation
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : exists("g:loaded_snips") ? "\<C-r>=TriggerSnippet()\<CR>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : exists("g:loaded_snips") ? "\<C-r>=BackwardsSnippet()\<CR>" : "\<S-Tab>"
-
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
-
-let g:airline_theme = 'wombat'
-let g:airline_symbols_ascii = 1
