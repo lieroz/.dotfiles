@@ -10,8 +10,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
-Plugin 'majutsushi/tagbar'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'valloric/youcompleteme'
 Plugin 'dracula/vim', { 'name': 'dracula' }
@@ -20,7 +18,7 @@ Plugin 'rust-lang/rust.vim'
 call vundle#end()
 
 syntax on
-colorscheme dracula
+colorscheme atom-dark-256
 
 " search
 set incsearch
@@ -57,7 +55,6 @@ autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cwor
 
 " Ctrl + n to toggle nerdtree && Ctrl + m to toggle tagbar
 map <C-n> :NERDTreeToggle<CR>
-nmap <C-m> :TagbarToggle<CR>
 
 " Rust settings
 let g:rustfmt_autosave = 1
