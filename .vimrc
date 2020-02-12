@@ -1,25 +1,19 @@
 filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
-
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/syntastic'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-commentary'
-Plugin 'valloric/youcompleteme'
 Plugin 'rust-lang/rust.vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'connorholyday/vim-snazzy'
 
 call vundle#end()
-
-syntax on
-colorscheme snazzy
 
 " search
 set incsearch
@@ -43,6 +37,26 @@ set t_Co=256
 set directory=~/.vim/tmp
 set nowrap
 set encoding=utf-8
+set background=dark
+
+" don't render special chars (tabs, trails, ...)
+set nolist
+
+" lazy drawing
+set lazyredraw
+set ttyfast
+
+" Performance improvments
+if has("mac")
+    set foldlevel=0
+    set foldmethod=manual
+endif
+
+" more powerful backspacing
+set backspace=indent,eol,start
+
+syntax on
+colorscheme snazzy
 
 filetype plugin indent on
 
@@ -55,7 +69,7 @@ nnoremap <C-l> <C-W>l
 " Highlight matching words
 autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
-" Ctrl + n to toggle nerdtree && Ctrl + m to toggle tagbar
+" Ctrl + n to toggle nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
 " Rust settings
@@ -163,3 +177,10 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_scope_highlight = 1
 
 map <F12> :!ctags -f tags --exclude=amalgamated -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q -I  _GLIBCXX_NOEXCEPT .<CR>
+
+function! Formatonsave()
+    let l:formatdiff = 1
+    py3f ~/.vim/clang-format.py
+endfunction
+
+autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
