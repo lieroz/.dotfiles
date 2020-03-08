@@ -12,6 +12,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-commentary'
 Plugin 'rust-lang/rust.vim'
 Plugin 'connorholyday/vim-snazzy'
+Plugin 'vim-jp/vim-cpp'
 
 call vundle#end()
 
@@ -184,3 +185,6 @@ function! Formatonsave()
 endfunction
 
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
