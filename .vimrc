@@ -10,9 +10,12 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-commentary'
-Plugin 'rust-lang/rust.vim'
 Plugin 'connorholyday/vim-snazzy'
 Plugin 'vim-jp/vim-cpp'
+Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
+Plugin 'fisadev/vim-isort'
+Plugin 'uarun/vim-protobuf'
 
 call vundle#end()
 
@@ -72,11 +75,6 @@ autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cwor
 
 " Ctrl + n to toggle nerdtree
 map <C-n> :NERDTreeToggle<CR>
-
-" Rust settings
-let g:rustfmt_autosave = 1
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
 " Display error message if smth is wrong
 set statusline+=%#warningmsg#
@@ -188,3 +186,51 @@ autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+" Rust
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+let g:rustfmt_autosave = 1
+let g:rust_clip_command = 'pbcopy'
+
+" Go
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+" let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_structs = 1 
+let g:go_highlight_methods = 1
+let g:go_highlight_build_constraints = 1
+
+" Python
+let g:vim_isort_map = ''
+let g:vim_isort_config_overrides = {
+  \ 'include_trailing_comma': 1, 'multi_line_output': 3}
+let g:vim_isort_python_version = 'python3'
+
+set rtp+=$GOROOT/misc/vim
+filetype plugin indent on
+syntax on
+
+" Javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+let g:javascript_conceal_noarg_arrow_function = "🞅"
+let g:javascript_conceal_underscore_arrow_function = "🞅"
