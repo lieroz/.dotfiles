@@ -103,7 +103,17 @@ transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfe
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Rust std lib
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
+
+# Go
+export PATH=$PATH:$(go env GOPATH)/bin
+
 alias tmux="tmux -2"
 alias git="git --no-pager"
 
 alias ctags="ctags -f tags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q  --exclude='*.css' -I  _GLIBCXX_NOEXCEPT"
+
+export PATH="/usr/local/opt/qt/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/qt/lib"
+export CPPFLAGS="-I/usr/local/opt/qt/include"
