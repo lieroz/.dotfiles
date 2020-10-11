@@ -1,3 +1,10 @@
+window:
+  # Window dimensions in character columns and lines
+  # (changes require restart)
+  dimensions:
+    columns: 80
+    lines: 24
+
 # Font configuration (changes require restart)
 font:
   # The normal (roman) font face to use.
@@ -18,7 +25,10 @@ font:
     # Style can be specified to pick a specific face.
     # style: Italic
   
-  size: 10
+  size: 14
+
+scrolling:
+  history: 1000
 
 # Colors (Wombat)
 colors:
@@ -48,3 +58,11 @@ colors:
     magenta: '0xe5bdff'
     cyan:    '0xc2fefa'
     white:   '0xffffff'
+
+key_bindings:
+  # (macOS only)
+  - { key: K,        mods: Command,         action: ClearHistory     }
+  - { key: K,        mods: Command,         chars: "\x0c"            }
+  - { key: F,        mods: Command,         action: ToggleFullscreen }
+  - { key: N,        mods: Command,         action: SpawnNewInstance }
+  - { key: B,        mods: Command,         chars: "\x02"            }

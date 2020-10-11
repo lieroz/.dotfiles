@@ -113,7 +113,3 @@ alias tmux="tmux -2"
 alias git="git --no-pager"
 
 alias ctags="ctags -f tags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q  --exclude='*.css' -I  _GLIBCXX_NOEXCEPT"
-
-export PATH="/usr/local/opt/qt/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/qt/lib"
-export CPPFLAGS="-I/usr/local/opt/qt/include"
