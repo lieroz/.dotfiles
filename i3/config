@@ -25,6 +25,7 @@ font pango:monospace bold 10
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+bindsym Control+Shift+l exec --no-startup-id i3lock-fancy
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -167,21 +168,30 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-	colors {
-		background #000000
-		statusline #ffffff
-		separator #aaaaaa
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
-		focused_workspace  #4c7899 #285577 #ffffff
-		active_workspace   #333333 #5f676a #ffffff
-		inactive_workspace #333333 #222222 #888888
-		urgent_workspace   #2f343a #900000 #ffffff
-		binding_mode       #2f343a #900000 #ffffff
-	}
+client.background       #F8F8F2
+
+bar {
+    font pango:Source Code Pro, 10
+    status_command /usr/bin/i3status-rs
+
+    colors {
+        background #282A36
+        statusline #F8F8F2
+        separator  #44475A
+
+        focused_workspace  #44475A #5F40A2 #F8F8F2
+        active_workspace   #282A36 #44475A #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
+        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+        binding_mode       #FF5555 #FF5555 #F8F8F2
+    }
 }
 
 # switch workspaces
@@ -196,21 +206,13 @@ gaps outer 0
 for_window[class="^.*"] border pixel 0
 
 # background image
-exec_always feh --bg-scale ~/Pictures/forest.jpg
+exec_always feh --bg-scale ~/background.jpg
 
 # change language
-exec_always "setxkbmap -model pc104 -layout us,ru -option grp:win_space_toggle"
-
-# Sreen brightness controls
-exec_always ~/.config/i3/brightness_startup.sh && refresh_i3status
-bindsym XF86MonBrightnessUp exec ~/.config/i3/brightness.sh inc && refresh_i3status # increase screen brightness
-bindsym XF86MonBrightnessDown exec ~/.config/i3/brightness.sh dec && refresh_i3status # decrease screen brightness
-
-# Screen lock control
-bindsym Mod4+l exec i3lock-fancy
+exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:lwin_toggle"
 
 # Configure 2-nd monitor
-exec_always xrandr --output HDMI-1 --left-of eDP-1 --auto
+exec_always xrandr --output HDMI-A-1 --rotate left --auto --left-of HDMI-A-0
 
-# Disable beep
-exec_always xset -b
+# Take a screenshot upon pressing $mod+x (select an area)
+bindsym --release $mod+x exec --no-startup-id scrot -s '%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -t image/png -i $f && rm $f'

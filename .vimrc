@@ -12,10 +12,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-commentary'
 Plugin 'connorholyday/vim-snazzy'
 Plugin 'vim-jp/vim-cpp'
-Plugin 'fatih/vim-go'
-Plugin 'rust-lang/rust.vim'
-Plugin 'fisadev/vim-isort'
-Plugin 'uarun/vim-protobuf'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'tikhomirov/vim-glsl'
 
 call vundle#end()
 
@@ -49,12 +47,6 @@ set nolist
 " lazy drawing
 set lazyredraw
 set ttyfast
-
-" Performance improvments
-if has("mac")
-    set foldlevel=0
-    set foldmethod=manual
-endif
 
 " more powerful backspacing
 set backspace=indent,eol,start
@@ -147,34 +139,6 @@ let g:airline_symbols.linenr = ''
 
 let g:airline_theme='wombat'
 
-" Put all standard C and C++ keywords under Vim's highlight group 'Statement'
-" (affects both C and C++ files)
-let g:cpp_simple_highlight = 1
-
-" Enable highlighting of named requirements (C++20 library concepts)
-let g:cpp_named_requirements_highlight = 1
-
-" Curly braces error workarround
-let c_no_curly_error = 1
-
-" Highlighting of library concepts
-let g:cpp_concepts_highlight = 1
-
-" Highlight template functions
-let g:cpp_experimental_simple_template_highlight = 1
-
-" Highlighting of POSIX functions
-let g:cpp_posix_standard = 1
-
-" Highlighting of class names in declarations
-let g:cpp_class_decl_highlight = 1
-
-" Highlighting of member variables
-let g:cpp_member_variable_highlight = 1
-
-" Highlighting of class scope
-let g:cpp_class_scope_highlight = 1
-
 map <F12> :!ctags -f tags --exclude=amalgamated -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q -I  _GLIBCXX_NOEXCEPT .<CR>
 
 function! Formatonsave()
@@ -187,50 +151,11 @@ autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
-" Rust
-autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
-autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
-let g:rustfmt_autosave = 1
-let g:rust_clip_command = 'pbcopy'
-
-" Go
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-" let g:go_highlight_variable_declarations = 1
-let g:go_highlight_variable_assignments = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_build_constraints = 1
-
-" Python
-let g:vim_isort_map = ''
-let g:vim_isort_config_overrides = {
-  \ 'include_trailing_comma': 1, 'multi_line_output': 3}
-let g:vim_isort_python_version = 'python3'
-
-set rtp+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
-
-" Javascript
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
-
-let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
-let g:javascript_conceal_noarg_arrow_function = "🞅"
-let g:javascript_conceal_underscore_arrow_function = "🞅"
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+" let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let c_no_curly_error=1
