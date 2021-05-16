@@ -10,10 +10,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-commentary'
-Plugin 'connorholyday/vim-snazzy'
 Plugin 'vim-jp/vim-cpp'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tikhomirov/vim-glsl'
+Plugin 'chriskempson/base16-vim'
 
 call vundle#end()
 
@@ -52,7 +52,9 @@ set ttyfast
 set backspace=indent,eol,start
 
 syntax on
-colorscheme snazzy
+colorscheme base16-default-dark
+let base16colorspace=256
+set termguicolors
 
 filetype plugin indent on
 
@@ -137,7 +139,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-let g:airline_theme='wombat'
+let g:airline_theme='tomorrow'
 
 map <F12> :!ctags -f tags --exclude=amalgamated -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q -I  _GLIBCXX_NOEXCEPT .<CR>
 

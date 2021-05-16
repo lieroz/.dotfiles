@@ -23,31 +23,36 @@ font:
 scrolling:
   history: 10000
 
-# Colors (Wombat)
+# Colors (Base16 Default Dark)
 colors:
   # Default colors
   primary:
-    background: '0x1f1f1f'
-    foreground: '0xe5e1d8'
+    background: '#181818'
+    foreground: '#d8d8d8'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '#d8d8d8'
+    cursor: '#d8d8d8'
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xf7786d'
-    green:   '0xbde97c'
-    yellow:  '0xefdfac'
-    blue:    '0x6ebaf8'
-    magenta: '0xef88ff'
-    cyan:    '0x90fdf8'
-    white:   '0xe5e1d8'
+    black:   '#181818'
+    red:     '#ab4642'
+    green:   '#a1b56c'
+    yellow:  '#f7ca88'
+    blue:    '#7cafc2'
+    magenta: '#ba8baf'
+    cyan:    '#86c1b9'
+    white:   '#d8d8d8'
 
   # Bright colors
   bright:
-    black:   '0xb4b4b4'
-    red:     '0xf99f92'
-    green:   '0xe3f7a1'
-    yellow:  '0xf2e9bf'
-    blue:    '0xb3d2ff'
-    magenta: '0xe5bdff'
-    cyan:    '0xc2fefa'
-    white:   '0xffffff'
+    black:   '#585858'
+    red:     '#ab4642'
+    green:   '#a1b56c'
+    yellow:  '#f7ca88'
+    blue:    '#7cafc2'
+    magenta: '#ba8baf'
+    cyan:    '#86c1b9'
+    white:   '#f8f8f8'

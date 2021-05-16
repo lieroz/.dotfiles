@@ -15,18 +15,21 @@ interval = 1
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
-info_type = "available"
+info_type = "used"
+format = "{icon} {used}/{total} ({available} free)"
+alert_absolute = true
 unit = "GB"
-interval = 20
-warning = 20.0
-alert = 10.0
+alert = 50
+warning = 40
 
 [[block]]
 block = "memory"
+format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+icons = true
+interval = 5
+warning_mem = 80
+critical_mem = 95
 
 [[block]]
 block = "cpu"
