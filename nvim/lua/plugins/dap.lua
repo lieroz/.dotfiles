@@ -127,15 +127,9 @@ map('n', '<leader>b', "<Cmd>lua require('dap').toggle_breakpoint()<CR>", opts)
 map('n', '<leader>B', "<Cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", opts)
 map('n', '<leader>lp', "<Cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", opts)
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-	pattern = "*",
-	desc = "prevent colorscheme clears self-defined DAP icon colors.",
-	callback = function()
-		vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939' })
-		vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef' })
-		vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379' })
-	end
-})
+vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#993939' })
+vim.api.nvim_set_hl(0, 'DapLogPoint', { ctermbg = 0, fg = '#61afef' })
+vim.api.nvim_set_hl(0, 'DapStopped', { ctermbg = 0, fg = '#98c379' })
 
 vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DapBreakpoint' })
