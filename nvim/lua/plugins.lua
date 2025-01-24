@@ -12,17 +12,6 @@ return require('packer').startup(function(use)
 		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}
 
-	use {
-		'nvim-tree/nvim-tree.lua',
-		requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-	}
-
-	use {
-		'romgrk/barbar.nvim',
-		requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-		requires = { 'lewis6991/gitsigns.nvim', opt = true }
-	}
-
 	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
 	use 'williamboman/mason.nvim'
@@ -36,6 +25,7 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/nvim-cmp'
 
 	use 'nvim-lua/plenary.nvim'
+	use 'ThePrimeagen/harpoon'
 
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.8',
@@ -58,4 +48,6 @@ return require('packer').startup(function(use)
 	}
 
 	use 'mbbill/undotree'
+
+	use { 'akinsho/toggleterm.nvim', tag = '*' }
 end)

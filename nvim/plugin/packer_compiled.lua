@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["barbar.nvim"] = {
-    loaded = true,
-    path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-buffer",
@@ -103,6 +98,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  harpoon = {
+    loaded = true,
+    path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -144,11 +144,6 @@ _G.packer_plugins = {
     path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-nio",
     url = "https://github.com/nvim-neotest/nvim-nio"
   },
-  ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-tree.lua",
-    url = "https://github.com/nvim-tree/nvim-tree.lua"
-  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-treesitter",
@@ -179,6 +174,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\akama\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
