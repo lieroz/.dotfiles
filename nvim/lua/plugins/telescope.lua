@@ -12,7 +12,7 @@ require('telescope').setup({
 	defaults = {
 		mappings = {
 			n = {
-				["<leader>fq"] = actions.close
+				["q"] = actions.close
 			},
 		},
 		file_ignore_patterns = { "build" }
